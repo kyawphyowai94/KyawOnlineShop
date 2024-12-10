@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('price');
+            $table->string('discount');
             $table->string('in_stock');
-            $table->string('description');
+            $table->text('description');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')

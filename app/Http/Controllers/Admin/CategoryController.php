@@ -4,18 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Item;
 use App\Models\Category;
 
-class ItemController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $items = Item::orderBy('id','DESC')->paginate(15);
-        return view('admin.items.index',compact('items'));
+        $categories = Category::orderBy('id','DESC')->paginate(15);
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -23,8 +22,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.items.create',compact('categories'));
+        return view('admin.categories.create');
     }
 
     /**
@@ -32,11 +30,11 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $items = Item::create($request->all());
-        $items->save();
+        // dd($request);
+        $categories = Category::create($request->all());
+        $categories->save();
 
-        return redirect()->route('backend.items.index');
+        return redirect()->route('backend.categories.index');
     }
 
     /**
@@ -44,11 +42,7 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        // dd($request);
-        $items = Item::create($request->all());
-        $items->save();
-
-        return redirect()->route('backend.items.index');
+        //
     }
 
     /**
